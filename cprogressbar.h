@@ -3,10 +3,22 @@
 
 #include <iostream>
 #include <string>
+#include <map>
+
+enum class ForeColor {
+    RED = 31,
+    GREEN,
+    YELLOW,
+    BLUE,
+    MAGENTA,
+    CYAN,
+    WHITE
+};
+
 
 class CProgressbar{
 public:
-    CProgressbar(int max, int incrementStepSize=1, int showPercentagetStepSize=5);
+    CProgressbar(int max, int incrementStepSize=1, int showPercentagetStepSize=5, ForeColor foreColor = ForeColor::WHITE);
     void show(std::string message="") const;
     void increment();
     bool isCompleted() const;
@@ -19,6 +31,7 @@ private:
     int m_current;
     int m_incrementStepSize;
     int m_showPercentageStepSize;
+    ForeColor m_foreColor;
     CProgressbar *m_childProgressbar;
 };
 
