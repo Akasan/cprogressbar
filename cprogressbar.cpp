@@ -11,9 +11,24 @@ void CProgressbar::increment(){
     m_current += m_incrementStepSize;
 }
 
+bool CProgressbar::isCompleted() const {
+    return getCurrentPercentage() == 100;
+}
+
+int CProgressbar::getCurrentPercentage() const {
+    return static_cast<int>(m_current * 100 / m_max);
+}
+
+void CProgressbar::setChild(CProgressbar* childProgressbar){
+    m_childProgressbar = childProgressbar;
+}
+
+void CProgressbar::clearChild(){
+    m_childProgressbar = nullptr;
+}
 
 void CProgressbar::show(std::string message) const {
-    int currentPercentage = static_cast<int>(m_current * 100 / m_max);
+    int currentPercentage = getCurrentPercentage();
     std::cout << "\r" << std::setw(3) << currentPercentage << "% [" <<  std::flush;
     int charNum = m_max / m_showPercentageStepSize;
     for(int i=0; i<charNum; i++){
