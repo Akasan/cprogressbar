@@ -18,6 +18,7 @@ CProgressbar::CProgressbar(int max, int incrementStepSize,
     : m_max(max), m_incrementStepSize(incrementStepSize),
       m_showPercentageStepSize(showPercentageStepSize), m_foreColor(foreColor) {
     m_current = 0;
+    m_childProgressbar = nullptr;
 };
 
 void CProgressbar::increment() { m_current += m_incrementStepSize; }
@@ -48,4 +49,8 @@ void CProgressbar::show(std::string message) const {
         }
     }
     std::cout << "] " << message << std::flush;
+}
+
+bool CProgressbar::hasChild() const {
+    return m_childProgressbar != nullptr;
 }

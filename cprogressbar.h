@@ -25,6 +25,7 @@ public:
     int getCurrentPercentage() const ;
     void setChild(CProgressbar* childProgressbar);
     void clearChild();
+    bool hasChild() const;
 
 private:
     int m_max;
